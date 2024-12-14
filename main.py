@@ -16,7 +16,7 @@ class CatDogDataset:
                                  std=[0.229, 0.224, 0.225]),
         ])
         self.dataset = load_dataset("Bingsu/Cat_and_Dog")
-        self.dataset = self.dataset.map(self.transform_dataset, batched=True, num_proc=12)
+        # self.dataset = self.dataset.map(self.transform_dataset, batched=True, num_proc=12)
         self.dataset.set_format(type='torch', columns=['image', 'labels'])
         self.train_dataset = self.dataset['train']
         self.val_dataset = self.dataset['test']
@@ -102,7 +102,7 @@ def main():
 
     model = ResNet18(num_classes=2).to(device)
 
-    train_model(model, train_loader, device)
+    # train_model(model, train_loader, device)
 
     model.load_state_dict(torch.load('best_model.pth', map_location=device))
     print("Model loaded")
